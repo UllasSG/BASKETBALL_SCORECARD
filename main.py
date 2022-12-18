@@ -14,3 +14,5 @@ def FGp(team,player):#returns Field goal % as int
 def points(team,player):#returns the points scored by the player as a integer
     return team[player]['points']
     
+def assists(team,player):#returns the assists scored by the player as a integer
+    return team[player]['assists']
