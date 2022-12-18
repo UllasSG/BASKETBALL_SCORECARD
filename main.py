@@ -13,4 +13,7 @@ def FGp(team,player):#returns Field goal % as int
 
 def points(team,player):#returns the points scored by the player as a integer
     return team[player]['points']
-    
+
+def TSp(team,player):
+    ts=(team[player]['points']/(2*team[player]['FGA']))*100
+    return ts
