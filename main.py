@@ -16,3 +16,4 @@ def points(team,player):#returns the points scored by the player as a integer
     
 def assists(team,player):#returns the assists scored by the player as a integer
     return team[player]['assists']
+ print(hello world)
