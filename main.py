@@ -3,7 +3,7 @@ away={}
 def addplayer(team):
     name=input('ENTER NAME')
     team[name]={'points':0,'assists':0,'FGA':0,'FGM':0,'3PA':0,'3PM':0}
-addplayer(home)
+
 
 def FGp(team,player):#returns Field goal % as int
     if (team[player]['FGA'])==0:
@@ -11,6 +11,5 @@ def FGp(team,player):#returns Field goal % as int
     fgp=((team[player]['FGM'])/(team[player]['FGA']))*100
     return fgp
 
-def playerpoints(team,player):#returns points scored by players as int
-    return team[player]['points']
-
+def points(team,player):
+    
