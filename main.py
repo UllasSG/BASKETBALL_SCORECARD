@@ -16,6 +16,7 @@ def points(team,player):#returns the points scored by the player as a integer
     
 def assists(team,player):#returns the assists scored by the player as a integer
     return team[player]['assists']
+
 def TSp(team,player):
     tsp=((team[player]['points'])/(2*team[player]['FGA']))*100
     return tsp
