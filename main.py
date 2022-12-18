@@ -19,3 +19,8 @@ def assists(team,player):#returns the assists scored by the player as a integer
 def TSp(team,player):
     tsp=((team[player]['points'])/(2*team[player]['FGA']))*100
     return tsp
+def 3pm%(team,player):#returns 3 pointers made % as int
+    if (team[player]['3pm'])==0:
+        return 0
+    3pm=((team[player]['3PM'])/(team[player]['3pm']))*100
+    return 3pm
