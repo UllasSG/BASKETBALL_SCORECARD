@@ -10,5 +10,6 @@ def FGp(team,player):#returns Field goal % as int
         return 0
     fgp=((team[player]['FGM'])/(team[player]['FGA']))*100
     return fgp
-def pointsss
 
+def points(team,player):
+    return
