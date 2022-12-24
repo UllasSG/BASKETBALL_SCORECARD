@@ -25,3 +25,31 @@ def Thrp(team,player):#returns 3 pointers made % as int
         return 0
     tpm=((team[player]['3PM'])/(team[player]['3PA']))*100
     return tpm
+
+
+def teamThrp(team):
+    teamFGA=0
+    teamFGM=0
+    for i in team:
+        teamFGA+=team[i]['FGA']
+        teamFGM+=team[i]['FGM']
+    return (teamFGM/teamFGA)
+
+
+def team3Pp(team):
+    team3PA=0
+    team3PM=0
+    for i in team:
+        team3PA+=team[i]['3PA']
+        team3PM+=team[i]['3PM']
+    return (team3PM/team3PA)
+
+def teamTSp(team):
+    teamPts=0
+    teamFGA=0
+    for i in team:
+        teamPts+=team[i]['points']
+        teamFGA+=team[i]['FGA']
+    return (teampts/(2*teamFGA))
+
+#Team leaders //ToDo
