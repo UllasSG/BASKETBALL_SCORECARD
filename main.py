@@ -5,29 +5,29 @@ def addplayer(team):
     team[name]={'points':0,'assists':0,'FGA':0,'FGM':0,'3PA':0,'3PM':0}
 
 
-def FGp(team,player):#returns Field goal % as int
+def FGp(team,player):#returns Field goal % as float
     if (team[player]['FGA'])==0:
         return 0
     fgp=((team[player]['FGM'])/(team[player]['FGA']))*100
     return fgp
 
-def points(team,player):#returns the points scored by the player as a integer
+def points(team,player):#returns the points scored by the player as a float
     return team[player]['points']
     
-def assists(team,player):#returns the assists scored by the player as a integer
+def assists(team,player):#returns the assists scored by the player as a float
     return team[player]['assists']
 
-def TSp(team,player):
+def TSp(team,player): #returns True Shooting % as float
     tsp=((team[player]['points'])/(2*team[player]['FGA']))*100
     return tsp
-def Thrp(team,player):#returns 3 pointers made % as int
+def Thrp(team,player):#returns 3 pointers made % as float
     if (team[player]['3PM'])==0:
         return 0
     tpm=((team[player]['3PM'])/(team[player]['3PA']))*100
     return tpm
 
 
-def teamThrp(team):
+def teamFGp(team):    #Returns Team FG % as float
     teamFGA=0
     teamFGM=0
     for i in team:
@@ -36,7 +36,7 @@ def teamThrp(team):
     return (teamFGM/teamFGA)
 
 
-def team3Pp(team):
+def team3Pp(team):    # Returns Team 3P % as float
     team3PA=0
     team3PM=0
     for i in team:
@@ -44,7 +44,7 @@ def team3Pp(team):
         team3PM+=team[i]['3PM']
     return (team3PM/team3PA)
 
-def teamTSp(team):
+def teamTSp(team):          # returns tream TS % as float
     teamPts=0
     teamFGA=0
     for i in team:
