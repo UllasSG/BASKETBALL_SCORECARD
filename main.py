@@ -5,13 +5,13 @@ def addplayer(team):
     team[name]={'points':0,'assists':0,'FGA':0,'FGM':0,'3PA':0,'3PM':0}
 
 
-def FGp(team,player):#returns Field goal % as int
+def FGp(team,player):#returns Field goal % as float
     if (team[player]['FGA'])==0:
         return 0
     fgp=((team[player]['FGM'])/(team[player]['FGA']))*100
     return fgp
 
-def points(team,player):#returns the points scored by the player as a int
+def points(team,player):#returns the points scored by the player as a float
     return team[player]['points']
     
 def assists(team,player):#returns the assists scored by the player as a float
