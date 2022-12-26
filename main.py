@@ -52,4 +52,15 @@ def teamTSp(team):          # returns tream TS % as float
         teamFGA+=team[i]['FGA']
     return (teampts/(2*teamFGA))
 
-#Team leaders //ToDo
+
+def TeamLeadPoints(team):
+    return max(team,key=lambda x:team[x]['points'])
+
+def TeamLeadAssists(team):
+    return max(team,key=lambda x:team[x]['assists'])
+
+
+
+
+
+#d={'ullas':{'points':10,'assists':0,'FGA':0,'FGM':0,'3PA':0,'3PM':0},'tanmay':{'points':5,'assists':0,'FGA':0,'FGM':0,'3PA':0,'3PM':0},'vihaan':{'points':0,'assists':0,'FGA':0,'FGM':0,'3PA':0,'3PM':0}}
