@@ -1,5 +1,14 @@
+
+######################################################################################################################
+
+from tkinter import *
+window=Tk()
+
+
+
 home={}
 away={}
+d={'ullas':{'points':10,'assists':5,'FGA':5,'FGM':3,'3PA':0,'3PM':8},'tanmay':{'points':60,'assists':50,'FGA':5,'FGM':0,'3PA':7,'3PM':0},'vihaan':{'points':45,'assists':0,'FGA':0,'FGM':0,'3PA':0,'3PM':0}}
 def addplayer(team):
     name=input('ENTER NAME')
     team[name]={'points':0,'assists':0,'FGA':0,'FGM':0,'3PA':0,'3PM':0}
@@ -50,7 +59,7 @@ def teamTSp(team):          # returns tream TS % as float
     for i in team:
         teamPts+=team[i]['points']
         teamFGA+=team[i]['FGA']
-    return (teampts/(2*teamFGA))
+    return (teamPts/(2*teamFGA))
 
 
 def TeamLeadPoints(team):
@@ -60,7 +69,52 @@ def TeamLeadAssists(team):
     return max(team,key=lambda x:team[x]['assists'])
 
 
+################## INPUT PLAYS   ####################
+
+#play=(team,player,2p/3p,made/miss,assisted)
+play=(d,'ullas',3,False,'tanmay')
+
+def newplay(p):
+    d[p[1]]['FGA']+=1
+    if p[3]==True:
+        d[p[1]]['points']+=p[2]
+        d[p[1]]['FGM']+=1
+        d[p[4]]['assists']+=1
+    if p[2]==3:
+        d[p[1]]['3PA']+=1
+        if p[3]==True:
+            d[p[1]]['3PM']+=1
+
+window.configure(bg='black')
+
+
+header=Label(window,text='BASKETBALL SCORECARD',font=('Arial Black',50),fg='white',padx=50,bg='black')
+
+header.grid(row=0,column=0)
+
+header.place(relx=0.5,rely=0.1,anchor=CENTER)
+
+
+home_l=Label(window,text='HOME',font=('Arial Black',50),bg='black',fg='Blue')
+away_l=Label(window,text='AWAY',font=('Arial Black',50),bg='black',fg='red')
+home_l.grid()
+away_l.grid()
+
+home_l.place(relx=0.1,rely=0.3,anchor=W)
+away_l.place(relx=0.7,rely=0.3,anchor=W)
+
+homeFrame=Frame(window,width=230,bg='black',height=100)
+homeFrame.grid()
+homeFrame.place(relx=0.1,rely=0.5,anchor=W)
+Inputtxt=Text(homeFrame,height=5,width=20,padx=10,pady=10).pack()
 
 
 
-#d={'ullas':{'points':10,'assists':0,'FGA':0,'FGM':0,'3PA':0,'3PM':0},'tanmay':{'points':5,'assists':0,'FGA':0,'FGM':0,'3PA':0,'3PM':0},'vihaan':{'points':0,'assists':0,'FGA':0,'FGM':0,'3PA':0,'3PM':0}}
+
+
+
+window.attributes('-fullscreen',True)
+
+window.mainloop()
+
+
