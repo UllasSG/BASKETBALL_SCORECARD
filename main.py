@@ -105,12 +105,56 @@ away_l.place(relx=0.7,rely=0.3,anchor=W)
 
 homeFrame=Frame(window,width=230,bg='black',height=100)
 homeFrame.grid()
-homeFrame.place(relx=0.1,rely=0.5,anchor=W)
-Inputtxt=Text(homeFrame,height=5,width=20,padx=10,pady=10).pack()
+homeFrame.place(relx=0.08,rely=0.6,anchor=W)
+awayFrame=Frame(window,width=230,bg='black',height=100)
+awayFrame.grid()
+awayFrame.place(relx=0.68,rely=0.6,anchor=W)
+#Pack the widgets in the home frame
+home_label = Label(homeFrame, text="Team 1",font=("arial", 20))
+home_label.grid(row=0, column=0,pady=20)
+home_player1 = Entry(homeFrame,font=("arial", 20))
+home_player1.grid(row=1, column=0,pady=10)
+home_player2 = Entry(homeFrame,font=("arial", 20))
+home_player2.grid(row=2, column=0,pady=10)
+home_player3 = Entry(homeFrame,font=("arial", 20))
+home_player3.grid(row=3, column=0,pady=10)
+home_player4 = Entry(homeFrame,font=("arial", 20))
+home_player4.grid(row=4, column=0,pady=10)
+home_player5 = Entry(homeFrame,font=("arial", 20))
+home_player5.grid(row=5, column=0,pady=10)
 
 
+away_label = Label(awayFrame, text="Team 2",font=("arial", 20))
+away_label.grid(row=0, column=1,pady=20)
+away_player1 = Entry(awayFrame,font=("arial", 20))
+away_player1.grid(row=1, column=1,pady=10)
+away_player2 = Entry(awayFrame,font=("arial", 20))
+away_player2.grid(row=2, column=1,pady=10)
+away_player3 = Entry(awayFrame,font=("arial", 20))
+away_player3.grid(row=3, column=1,pady=10)
+away_player4 = Entry(awayFrame,font=("arial", 20))
+away_player4.grid(row=4, column=1,pady=10)
+away_player5 = Entry(awayFrame,font=("arial", 20))
+away_player5.grid(row=5, column=1,pady=10)
 
 
+#Define the submit button callback function
+def submit_names():
+
+#Get the names from the entry widgets
+    home_names = (home_player1.get(), home_player2.get(), home_player3.get(), home_player4.get(), home_player5.get())
+    away_names = (away_player1.get(), away_player2.get(), away_player3.get(), away_player4.get(), away_player5.get())
+    
+
+#Print the team names
+    print(f"Home team: ",home_names)
+    print(f"Away team: ",away_names)
+    window.destroy()
+
+#Create the button to submit the names
+submit_button = Button(window, text="Submit",command = submit_names,width=20,height=2)
+submit_button.grid()
+submit_button.place(relx=0.45,rely=0.9)
 
 
 window.attributes('-fullscreen',True)
