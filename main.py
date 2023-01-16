@@ -201,9 +201,10 @@ away_score_label.grid(row=1, column=1)
 scoreFrame.pack()
 
 statsFrame=Frame(root,bg='white')
+statsFrame.config(width=500,height=100)
 statsFrame.pack()
-statsFrame.configure(width=100,height=30)
-s=Label(statsFrame,text='TEAM STATS').pack()
+
+#s=Label(statsFrame,text='TEAM STATS').pack()
 root.configure(background='black')
 root.attributes('-fullscreen',True)
 root.mainloop()
