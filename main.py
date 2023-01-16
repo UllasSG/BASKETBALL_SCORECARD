@@ -201,8 +201,9 @@ away_score_label.grid(row=1, column=1)
 scoreFrame.pack()
 
 statsFrame=Frame(root,bg='white')
-statsFrame.config(width=500,height=100)
+#statsFrame.config(width=500,height=100)
 #statsFrame.place(relx=0.5,rely=0.9)
+
 statsFrame.pack()
 
 s=Label(statsFrame,text='TEAM STATS')
