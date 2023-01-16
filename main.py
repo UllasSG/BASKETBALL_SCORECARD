@@ -161,4 +161,41 @@ window.attributes('-fullscreen',True)
 
 window.mainloop()
 
+##################################################################
+import tkinter as tk
+
+root = tk.Tk()
+root.title("Basketball Scorecard")
+
+# Create labels for HOME and AWAY teams
+home_label = tk.Label(root, text="HOME", font=("Helvetica", 50),bg='black',fg='Blue')
+away_label = tk.Label(root, text="AWAY", font=("Helvetica", 50),bg='black',fg='Blue')
+
+# Create variables to store score for HOME and AWAY teams
+home_score = tk.IntVar()
+away_score = tk.IntVar()
+
+# Create label widgets to display score for HOME and AWAY teams
+home_score_label = tk.Label(root, textvariable=home_score, font=("Helvetica", 20))
+away_score_label = tk.Label(root, textvariable=away_score, font=("Helvetica", 20))
+
+# Create buttons to increment scores for HOME and AWAY teams
+home_score_button = tk.Button(root, text="+", font=("Helvetica", 20), command=lambda: home_score.set(home_score.get() + 1))
+away_score_button = tk.Button(root, text="+", font=("Helvetica", 20), command=lambda: away_score.set(away_score.get() + 1))
+
+# Create button to reset the scores
+reset_button = tk.Button(root, text="Reset", font=("Helvetica", 20), command=lambda: [home_score.set(0), away_score.set(0)])
+
+# Use the grid layout manager to position the widgets
+home_label.grid(row=0, column=0, pady=20)
+home_score_label.grid(row=1, column=0)
+#home_score_button.grid(row=0, column=2)
+away_label.grid(row=0, column=1, pady=20)
+away_score_label.grid(row=1, column=1)
+#away_score_button.grid(row=1, column=2)
+#reset_button.grid(row=2, column=0, columnspan=3, pady=20)
+root.configure(background='black')
+root.attributes('-fullscreen',True)
+root.mainloop()
+
 
