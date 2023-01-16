@@ -191,10 +191,10 @@ away_score_button = tk.Button(scoreFrame, text="+", font=("Helvetica", 20), comm
 reset_button = tk.Button(scoreFrame, text="Reset", font=("Helvetica", 20), command=lambda: [home_score.set(0), away_score.set(0)])
 
 # Use the grid layout manager to position the widgets
-home_label.grid(row=0, column=0, pady=20,padx=50)
+home_label.grid(row=0, column=0, pady=20,padx=100)
 home_score_label.grid(row=1, column=0,)
 #home_score_button.grid(row=0, column=2)
-away_label.grid(row=0, column=1, pady=20,padx=50)
+away_label.grid(row=0, column=1, pady=20,padx=100)
 away_score_label.grid(row=1, column=1)
 #away_score_button.grid(row=1, column=2)
 #reset_button.grid(row=2, column=0, columnspan=3, pady=20)
