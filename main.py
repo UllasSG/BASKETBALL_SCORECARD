@@ -180,8 +180,8 @@ home_score = tk.IntVar()
 away_score = tk.IntVar()
 
 # Create label widgets to display score for HOME and AWAY teams
-home_score_label = tk.Label(scoreFrame, textvariable=home_score, font=("Helvetica", 20))
-away_score_label = tk.Label(scoreFrame, textvariable=away_score, font=("Helvetica", 20))
+home_score_label = tk.Label(scoreFrame, textvariable=home_score, font=("Helvetica", 20),bg='black',fg='white')
+away_score_label = tk.Label(scoreFrame, textvariable=away_score, font=("Helvetica", 20),bg='black',fg='white')
 
 # Create buttons to increment scores for HOME and AWAY teams
 home_score_button = tk.Button(scoreFrame, text="+", font=("Helvetica", 20), command=lambda: home_score.set(home_score.get() + 1))
@@ -192,7 +192,7 @@ reset_button = tk.Button(scoreFrame, text="Reset", font=("Helvetica", 20), comma
 
 # Use the grid layout manager to position the widgets
 home_label.grid(row=0, column=0, pady=20)
-home_score_label.grid(row=1, column=0)
+home_score_label.grid(row=1, column=0,)
 #home_score_button.grid(row=0, column=2)
 away_label.grid(row=0, column=1, pady=20)
 away_score_label.grid(row=1, column=1)
