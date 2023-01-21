@@ -45,10 +45,11 @@ def teamFGp(team):    #Returns Team FG % as float
     for i in team:
         teamFGA+=team[i]['FGA']
         teamFGM+=team[i]['FGM']
-    if team[i]['FGA']==0:
+    print('teamFGA',teamFGA)
+    if teamFGA==0:
         return 0
     else:
-        return (teamFGM/teamFGA)
+        return (teamFGM/(teamFGA))*100
 
 
 def team3Pp(team):    # Returns Team 3P % as float
@@ -57,7 +58,7 @@ def team3Pp(team):    # Returns Team 3P % as float
     for i in team:
         team3PA+=team[i]['3PA']
         team3PM+=team[i]['3PM']
-    return (team3PM/team3PA)
+    return (team3PM/team3PA)*100
 
 def teamTSp(team):          # returns tream TS % as float
     teamPts=0
@@ -65,7 +66,7 @@ def teamTSp(team):          # returns tream TS % as float
     for i in team:
         teamPts+=team[i]['points']
         teamFGA+=team[i]['FGA']
-    return (teamPts/(2*teamFGA))
+    return (teamPts/(2*teamFGA))*100
 
 
 def TeamLeadPoints(team):
@@ -246,6 +247,7 @@ def open_new_window():
         #home_score_label.config(Text='fdsf')
         print(home)
         print(teamFGp(home))
+        hfgpVar.set((teamFGp(home)))
         new_window.destroy()
         
 
