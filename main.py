@@ -175,6 +175,7 @@ possesion=['none']
 
 
 def open_new_window():
+    global home_names
     new_window = tk.Toplevel(root)
     new_window.title("New Window")
     testlabel=tk.Label(new_window,text='add play')
@@ -212,8 +213,7 @@ def open_new_window():
     resultclicked.set('Result')
     resultdrop=OptionMenu(new_window,resultclicked,*result)
 
-    assisted=['None',
-        "Monday",
+    assisted=['None',home_names[0],
         "Tuesday",
         "Wednesday",
         "Thursday",
@@ -227,7 +227,8 @@ def open_new_window():
     attemptLabel=Label(new_window,text='attempts a')
     assistedbyLabel=Label(new_window,text='assisted by')
     def subPlay():
-        global possesion
+        pass
+
         
         
     subBtn=Button(new_window,text='SUBMIT',command=subPlay)
