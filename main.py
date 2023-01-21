@@ -75,19 +75,20 @@ def TeamLeadAssists(team):
 ################## INPUT PLAYS   ####################
 
 #play=(team,player,2p/3p,made/miss,assisted,teamtotal)
-#play=(d,'ullas',3,made,'tanmay')
+play=(d,'vihaan',3,'Made','tanmay',homepoints)
 
 def newplay(p):
-    d[p[1]]['FGA']+=1
+    global homepoints
+    p[0][p[1]]['FGA']+=1
     if p[3]=='Made':
-        d[p[1]]['points']+=p[2]
-        d[5]+=p[2]
-        d[p[1]]['FGM']+=1
-        d[p[4]]['assists']+=1
+        home[p[1]]['points']+=int(p[2])
+        p[5].set(int(int(p[5].get())+int(p[2])))
+        p[0][p[1]]['FGM']+=1
+        p[0][p[4]]['assists']+=1
     if p[2]==3:
-        d[p[1]]['3PA']+=1
+        p[0][p[1]]['3PA']+=1
         if p[3]=='Made':
-            d[p[1]]['3PM']+=1
+            p[0][p[1]]['3PM']+=1
 
 window.configure(bg='black')
 
@@ -145,9 +146,15 @@ homeTeam=[]
 awayTeam=[]
 #Define the submit button callback function
 def submit_names(home_names,away_names):
+    global home
+    global away
     #Get the names from the entry widgets
     home_names = (home_player1.get(), home_player2.get(), home_player3.get(), home_player4.get(), home_player5.get())
     away_names = (away_player1.get(), away_player2.get(), away_player3.get(), away_player4.get(), away_player5.get())
+    for i in home_names:
+        home[i]={'points':0,'assists':0,'FGA':0,'FGM':0,'3PA':0,'3PM':0}
+    for k in away_names:
+        away[k]={'points':0,'assists':0,'FGA':0,'FGM':0,'3PA':0,'3PM':0}
     #Print the team names
     #print(f"Home team: ",home_names)
     #print(f"Away team: ",away_names)
@@ -185,15 +192,7 @@ def open_new_window():
     new_window.geometry("500x200")
   
     # Dropdown menu options
-    playernames = [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday"
-        ]
+    playernames = [q for q in home]
   
     # datatype of menu text
     playerclicked = StringVar()
@@ -215,13 +214,8 @@ def open_new_window():
     resultclicked.set('Result')
     resultdrop=OptionMenu(new_window,resultclicked,*result)
 
-    assisted=['None',
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday"]
+    assisted=[w for w in home]
+    
     assistedclicked=StringVar()
     assistedclicked.set('Assisted by')
     assisteddrop=OptionMenu(new_window,assistedclicked,*assisted)
@@ -229,16 +223,19 @@ def open_new_window():
     attemptLabel=Label(new_window,text='attempts a')
     assistedbyLabel=Label(new_window,text='assisted by')
     def subPlay():
+        global homepoints
         print(homepoints)
-        pz=(home,playerclicked.get(),shotypeclicked.get(),resultclicked.get(),assistedclicked.get(),homepoints)
+        pz=(home,playerclicked.get(),shotypeclicked.get(),resultclicked.get(),assistedclicked.get(),home_score)
+        
         newplay(pz)
-        print(homepoints)
-        home_score_label.config(Text='fdsf')
+        #home_score.set(home_score.get() + 2)
+        #home_score_label.config(Text='fdsf')
+        
 
         
         
     subBtn=Button(new_window,text='SUBMIT',command=subPlay)
-
+    
     playerdrop.grid(row=1,column=0)
     attemptLabel.grid(row=1,column=1)
     shottypedrop.grid(row=1,column=2)
@@ -250,7 +247,7 @@ def open_new_window():
     
     new_window.mainloop()
     
-
+print(homepoints)
 
 addplaybtn=tk.Button(scoreFrame,bg='white',fg='green',text=' + ',font=("Arial", 20),command=open_new_window)
 addplaybtn.grid()
@@ -261,14 +258,14 @@ addplaybtn.place(relx=0.48,rely=0.55)
 # Create labels for HOME and AWAY teams
 home_label = tk.Label(scoreFrame, text="HOME", font=("Helvetica", 50),bg='black',fg='Blue')
 away_label = tk.Label(scoreFrame, text="AWAY", font=("Helvetica", 50),bg='black',fg='Blue')
-'''
+
 # Create variables to store score for HOME and AWAY teams
 home_score = tk.IntVar()
-away_score = tk.IntVar()'''
+away_score = tk.IntVar()
 
 # Create label widgets to display score for HOME and AWAY teams
-home_score_label = tk.Label(scoreFrame, text=str(homepoints), font=("Helvetica", 30),bg='black',fg='white')
-away_score_label = tk.Label(scoreFrame, text=awaypoints, font=("Helvetica", 30),bg='black',fg='white')
+home_score_label = tk.Label(scoreFrame, textvariable=home_score, font=("Helvetica", 30),bg='black',fg='white')
+away_score_label = tk.Label(scoreFrame, textvariable=away_score, font=("Helvetica", 30),bg='black',fg='white')
 
 # Create buttons to increment scores for HOME and AWAY teams
 home_score_button = tk.Button(scoreFrame, text="+", font=("Helvetica", 20), command=lambda: home_score.set(home_score.get() + 1))
