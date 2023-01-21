@@ -171,7 +171,7 @@ root.title("Basketball Scorecard")
 
 scoreFrame=Frame(root,bg='black')
 
-possesion=[]
+possesion=['none']
 
 
 def open_new_window(w):
@@ -223,15 +223,12 @@ def open_new_window(w):
     assistedclicked=StringVar()
     assistedclicked.set('Assisted by')
     assisteddrop=OptionMenu(new_window,assistedclicked,*assisted)
-
+    #print('in open1',w)
     attemptLabel=Label(new_window,text='attempts a')
     assistedbyLabel=Label(new_window,text='assisted by')
-    def subPlay():
-        global possesion
-        possesion.append(playerclicked.get())
-        
-    
-    subBtn=Button(new_window,text='SUBMIT',command=subPlay)
+    def subPlay(q):
+        q[0]=12
+    subBtn=Button(new_window,text='SUBMIT',command=lambda :subPlay(w))
 
     playerdrop.grid(row=1,column=0)
     attemptLabel.grid(row=1,column=1)
@@ -244,9 +241,9 @@ def open_new_window(w):
     
     new_window.mainloop()
     
-print(possesion)
 
-addplaybtn=tk.Button(scoreFrame,bg='white',fg='green',text=' + ',font=("Arial", 20),command=lambda :open_new_window(play))
+
+addplaybtn=tk.Button(scoreFrame,bg='white',fg='green',text=' + ',font=("Arial", 20),command=lambda :open_new_window(possesion))
 addplaybtn.grid()
 addplaybtn.place(relx=0.48,rely=0.55)
 
