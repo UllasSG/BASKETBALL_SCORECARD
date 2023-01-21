@@ -8,10 +8,13 @@ window=Tk()
 
 home={}
 away={}
-d={'ullas':{'points':10,'assists':5,'FGA':5,'FGM':3,'3PA':0,'3PM':8},'tanmay':{'points':60,'assists':50,'FGA':5,'FGM':0,'3PA':7,'3PM':0},'vihaan':{'points':45,'assists':0,'FGA':0,'FGM':0,'3PA':0,'3PM':0}}
+homepoints=0
+awaypoints=0
+d={'Tuesday':{'points':10,'assists':5,'FGA':5,'FGM':3,'3PA':0,'3PM':8},'tanmay':{'points':60,'assists':50,'FGA':5,'FGM':0,'3PA':7,'3PM':0},'vihaan':{'points':45,'assists':0,'FGA':0,'FGM':0,'3PA':0,'3PM':0}}
 def addplayer(team):
     name=input('ENTER NAME')
     team[name]={'points':0,'assists':0,'FGA':0,'FGM':0,'3PA':0,'3PM':0}
+
 
 
 def FGp(team,player):#returns Field goal % as float
@@ -71,18 +74,19 @@ def TeamLeadAssists(team):
 
 ################## INPUT PLAYS   ####################
 
-#play=(team,player,2p/3p,made/miss,assisted)
-play=(d,'ullas',3,False,'tanmay')
+#play=(team,player,2p/3p,made/miss,assisted,teamtotal)
+#play=(d,'ullas',3,made,'tanmay')
 
 def newplay(p):
     d[p[1]]['FGA']+=1
-    if p[3]==True:
+    if p[3]=='Made':
         d[p[1]]['points']+=p[2]
+        d[5]+=p[2]
         d[p[1]]['FGM']+=1
         d[p[4]]['assists']+=1
     if p[2]==3:
         d[p[1]]['3PA']+=1
-        if p[3]==True:
+        if p[3]=='Made':
             d[p[1]]['3PM']+=1
 
 window.configure(bg='black')
@@ -202,7 +206,7 @@ def open_new_window():
 
     # Dropdown menu options
     shottype = [2,3]
-    shotypeclicked = IntVar()
+    shotypeclicked = StringVar()
     shotypeclicked.set('Shot type')
     shottypedrop = OptionMenu( new_window , shotypeclicked , *shottype )
 
@@ -225,7 +229,11 @@ def open_new_window():
     attemptLabel=Label(new_window,text='attempts a')
     assistedbyLabel=Label(new_window,text='assisted by')
     def subPlay():
-        pass
+        print(homepoints)
+        pz=(home,playerclicked.get(),shotypeclicked.get(),resultclicked.get(),assistedclicked.get(),homepoints)
+        newplay(pz)
+        print(homepoints)
+        home_score_label.config(Text='fdsf')
 
         
         
@@ -253,14 +261,14 @@ addplaybtn.place(relx=0.48,rely=0.55)
 # Create labels for HOME and AWAY teams
 home_label = tk.Label(scoreFrame, text="HOME", font=("Helvetica", 50),bg='black',fg='Blue')
 away_label = tk.Label(scoreFrame, text="AWAY", font=("Helvetica", 50),bg='black',fg='Blue')
-
+'''
 # Create variables to store score for HOME and AWAY teams
 home_score = tk.IntVar()
-away_score = tk.IntVar()
+away_score = tk.IntVar()'''
 
 # Create label widgets to display score for HOME and AWAY teams
-home_score_label = tk.Label(scoreFrame, textvariable=home_score, font=("Helvetica", 30),bg='black',fg='white')
-away_score_label = tk.Label(scoreFrame, textvariable=away_score, font=("Helvetica", 30),bg='black',fg='white')
+home_score_label = tk.Label(scoreFrame, text=str(homepoints), font=("Helvetica", 30),bg='black',fg='white')
+away_score_label = tk.Label(scoreFrame, text=awaypoints, font=("Helvetica", 30),bg='black',fg='white')
 
 # Create buttons to increment scores for HOME and AWAY teams
 home_score_button = tk.Button(scoreFrame, text="+", font=("Helvetica", 20), command=lambda: home_score.set(home_score.get() + 1))
@@ -314,40 +322,40 @@ teamleaderFrame=Frame(root,bg='white',background='black')
 
 teamleaderFrame.pack()
 
-teamleaderLabel=Label(teamleaderFrame,text='team leaders',font=("Helvetica", 30),fg='white',bg='black')
+teamleaderLabel=Label(teamleaderFrame,text='TEAM LEADERS',font=("Helvetica", 30),fg='white',bg='black')
 teamleaderLabel.grid(row=0,column=1)
 home_label = tk.Label(teamleaderFrame, text="Home",font=("Helvetica", 30),fg='white',bg='black')
-home_label.grid(row=1, column=1)
+home_label.grid(row=1, column=1,padx=10,pady=8)
 
 away_label = tk.Label(teamleaderFrame, text="Away",font=("Helvetica", 30),fg='white',bg='black')
-away_label.grid(row=1, column=2)
+away_label.grid(row=1, column=2,padx=10,pady=8)
 
 home_points_label = tk.Label(teamleaderFrame, text="abc-1",font=("Helvetica", 30),fg='white',bg='black')
-home_points_label.grid(row=2, column=1)
+home_points_label.grid(row=2, column=1,padx=10,pady=8)
 
 home_assists_label = tk.Label(teamleaderFrame, text="bbb-2",font=("Helvetica", 30),fg='white',bg='black')
-home_assists_label.grid(row=3, column=1)
+home_assists_label.grid(row=3, column=1,padx=10,pady=8)
 
 home_rebounds_label = tk.Label(teamleaderFrame, text="ccc-3",font=("Helvetica", 30),fg='white',bg='black')
-home_rebounds_label.grid(row=4, column=1)
+home_rebounds_label.grid(row=4, column=1,padx=10,pady=8)
 
 away_points_label = tk.Label(teamleaderFrame, text="ddd-4",font=("Helvetica", 30),fg='white',bg='black')
-away_points_label.grid(row=2, column=2)
+away_points_label.grid(row=2, column=2,padx=10,pady=8)
 
 away_assists_label = tk.Label(teamleaderFrame, text="eee-30",font=("Helvetica", 30),fg='white',bg='black')
-away_assists_label.grid(row=3, column=2)
+away_assists_label.grid(row=3, column=2,padx=10,pady=8)
 
 away_rebounds_label = tk.Label(teamleaderFrame, text="hhs-20",font=("Helvetica", 30),fg='white',bg='black')
-away_rebounds_label.grid(row=4, column=2)
+away_rebounds_label.grid(row=4, column=2,padx=10,pady=8)
 
 points_label = tk.Label(teamleaderFrame, text="Points",font=("Helvetica", 30),fg='white',bg='black')
-points_label.grid(row=2, column=0)
+points_label.grid(row=2, column=0,padx=10,pady=10)
 
 assists_label = tk.Label(teamleaderFrame, text="Assists",font=("Helvetica", 30),fg='white',bg='black')
-assists_label.grid(row=3, column=0)
+assists_label.grid(row=3, column=0,padx=10,pady=10)
 
 rebounds_label = tk.Label(teamleaderFrame, text="Rebounds",font=("Helvetica", 30),fg='white',bg='black')
-rebounds_label.grid(row=4, column=0)
+rebounds_label.grid(row=4, column=0,padx=10,pady=10)
 ###############
 root.configure(background='black')
 root.attributes('-fullscreen',True)
