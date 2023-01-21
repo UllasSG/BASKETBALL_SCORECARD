@@ -150,7 +150,7 @@ def submit_names():
     print(f"Home team: ",home_names)
     print(f"Away team: ",away_names)
     window.destroy()
-
+    print(home_names)
 #Create the button to submit the names
 submit_button = Button(window, text="Submit",command = submit_names,width=20,height=2)
 submit_button.grid()
@@ -175,7 +175,7 @@ possesion=['none']
 
 
 def open_new_window():
-    global home_names
+    
     new_window = tk.Toplevel(root)
     new_window.title("New Window")
     testlabel=tk.Label(new_window,text='add play')
