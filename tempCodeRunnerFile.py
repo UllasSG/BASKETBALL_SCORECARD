@@ -1,1 +1,1 @@
-home
+    print(play)

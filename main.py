@@ -171,9 +171,86 @@ root.title("Basketball Scorecard")
 
 scoreFrame=Frame(root,bg='black')
 
-addplaybtn=tk.Button(scoreFrame,bg='white',fg='green',text='add',command=lambda x:print('clikc'))
+possesion=[]
+
+
+def open_new_window(w):
+    new_window = tk.Toplevel(root)
+    new_window.title("New Window")
+    testlabel=tk.Label(new_window,text='add play')
+    testlabel.grid()
+    new_window.geometry("500x200")
+  
+    # Dropdown menu options
+    playernames = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+        ]
+  
+    # datatype of menu text
+    playerclicked = StringVar()
+  
+    # initial menu text
+    playerclicked.set( "player name" )
+  
+    # Create Dropdown menu
+    playerdrop = OptionMenu( new_window , playerclicked , *playernames )
+
+    # Dropdown menu options
+    shottype = [2,3]
+    shotypeclicked = IntVar()
+    shotypeclicked.set('Shot type')
+    shottypedrop = OptionMenu( new_window , shotypeclicked , *shottype )
+
+    result=['Made','Missed']
+    resultclicked=StringVar()
+    resultclicked.set('Result')
+    resultdrop=OptionMenu(new_window,resultclicked,*result)
+
+    assisted=['None',
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"]
+    assistedclicked=StringVar()
+    assistedclicked.set('Assisted by')
+    assisteddrop=OptionMenu(new_window,assistedclicked,*assisted)
+
+    attemptLabel=Label(new_window,text='attempts a')
+    assistedbyLabel=Label(new_window,text='assisted by')
+    def subPlay():
+        global possesion
+        possesion.append(playerclicked.get())
+        
+    
+    subBtn=Button(new_window,text='SUBMIT',command=subPlay)
+
+    playerdrop.grid(row=1,column=0)
+    attemptLabel.grid(row=1,column=1)
+    shottypedrop.grid(row=1,column=2)
+    resultdrop.grid(row=1,column=3)
+    assistedbyLabel.grid(row=1,column=4)
+    assisteddrop.grid(row=1,column=5)
+    subBtn.grid()
+
+    
+    new_window.mainloop()
+    
+print(possesion)
+
+addplaybtn=tk.Button(scoreFrame,bg='white',fg='green',text=' + ',font=("Arial", 20),command=lambda :open_new_window(play))
 addplaybtn.grid()
-addplaybtn.place(relx=0.4,rely=0.5)
+addplaybtn.place(relx=0.48,rely=0.55)
+
+
 
 # Create labels for HOME and AWAY teams
 home_label = tk.Label(scoreFrame, text="HOME", font=("Helvetica", 50),bg='black',fg='Blue')
@@ -237,6 +314,7 @@ atsp.grid(row=4,column=2,padx=10,pady=10)
 ###########################tanmay###########################
 root.configure(background='black')
 root.attributes('-fullscreen',True)
+
 root.mainloop()
 
 
