@@ -137,9 +137,11 @@ away_player4.grid(row=4, column=1,pady=10)
 away_player5 = Entry(awayFrame,font=("arial", 20))
 away_player5.grid(row=5, column=1,pady=10)
 
-
+home_names=[]
+away_names=[]
 #Define the submit button callback function
 def submit_names():
+    global home_names
 
 #Get the names from the entry widgets
     home_names = (home_player1.get(), home_player2.get(), home_player3.get(), home_player4.get(), home_player5.get())
@@ -150,7 +152,7 @@ def submit_names():
     print(f"Home team: ",home_names)
     print(f"Away team: ",away_names)
     window.destroy()
-    print(home_names)
+print(home_names)
 #Create the button to submit the names
 submit_button = Button(window, text="Submit",command = submit_names,width=20,height=2)
 submit_button.grid()
@@ -213,7 +215,7 @@ def open_new_window():
     resultclicked.set('Result')
     resultdrop=OptionMenu(new_window,resultclicked,*result)
 
-    assisted=['None',home_names[0],
+    assisted=['None',
         "Tuesday",
         "Wednesday",
         "Thursday",
