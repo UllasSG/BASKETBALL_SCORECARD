@@ -137,24 +137,20 @@ away_player4.grid(row=4, column=1,pady=10)
 away_player5 = Entry(awayFrame,font=("arial", 20))
 away_player5.grid(row=5, column=1,pady=10)
 
-home_names=[]
-away_names=[]
+homeTeam=[]
+awayTeam=[]
 #Define the submit button callback function
-def submit_names():
-    global home_names
-
-#Get the names from the entry widgets
+def submit_names(home_names,away_names):
+    #Get the names from the entry widgets
     home_names = (home_player1.get(), home_player2.get(), home_player3.get(), home_player4.get(), home_player5.get())
     away_names = (away_player1.get(), away_player2.get(), away_player3.get(), away_player4.get(), away_player5.get())
-    
-
-#Print the team names
-    print(f"Home team: ",home_names)
-    print(f"Away team: ",away_names)
+    #Print the team names
+    #print(f"Home team: ",home_names)
+    #print(f"Away team: ",away_names)
     window.destroy()
-print(home_names)
+
 #Create the button to submit the names
-submit_button = Button(window, text="Submit",command = submit_names,width=20,height=2)
+submit_button = Button(window, text="Submit",command =lambda :submit_names(homeTeam,awayTeam),width=20,height=2)
 submit_button.grid()
 submit_button.place(relx=0.45,rely=0.9)
 
@@ -162,7 +158,7 @@ submit_button.place(relx=0.45,rely=0.9)
 window.attributes('-fullscreen',True)
 
 window.mainloop()
-
+print(homeTeam)
 ##################################################################
 import tkinter as tk
 
@@ -313,7 +309,43 @@ htsp.grid(row=4,column=1,padx=10,pady=10)
 afgp.grid(row=2,column=2,padx=10,pady=10)
 atpp.grid(row=3,column=2,padx=10,pady=10)
 atsp.grid(row=4,column=2,padx=10,pady=10)
-###########################tanmay###########################
+########################
+teamleaderFrame=Frame(root,bg='white',background='black')
+
+teamleaderFrame.pack(padx=10,pady=100)
+home_label = tk.Label(teamleaderFrame, text="Home", font=("Arial", 16))
+home_label.grid(row=0, column=1)
+
+away_label = tk.Label(teamleaderFrame, text="Away", font=("Arial", 16))
+away_label.grid(row=0, column=2)
+
+home_points_label = tk.Label(teamleaderFrame, text="abc-1", font=("Arial", 14))
+home_points_label.grid(row=1, column=1)
+
+home_assists_label = tk.Label(teamleaderFrame, text="bbb-2", font=("Arial", 14))
+home_assists_label.grid(row=2, column=1)
+
+home_rebounds_label = tk.Label(teamleaderFrame, text="ccc-3", font=("Arial", 14))
+home_rebounds_label.grid(row=3, column=1)
+
+away_points_label = tk.Label(teamleaderFrame, text="ddd-4", font=("Arial", 14))
+away_points_label.grid(row=1, column=2)
+
+away_assists_label = tk.Label(teamleaderFrame, text="eee-30", font=("Arial", 14))
+away_assists_label.grid(row=2, column=2)
+
+away_rebounds_label = tk.Label(teamleaderFrame, text="hhs-20", font=("Arial", 14))
+away_rebounds_label.grid(row=3, column=2)
+
+points_label = tk.Label(teamleaderFrame, text="Points", font=("Arial", 14))
+points_label.grid(row=1, column=0)
+
+assists_label = tk.Label(teamleaderFrame, text="Assists", font=("Arial", 14))
+assists_label.grid(row=2, column=0)
+
+rebounds_label = tk.Label(teamleaderFrame, text="Rebounds", font=("Arial", 14))
+rebounds_label.grid(row=3, column=0)
+###############
 root.configure(background='black')
 root.attributes('-fullscreen',True)
 
