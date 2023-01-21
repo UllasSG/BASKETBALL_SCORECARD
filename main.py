@@ -174,7 +174,7 @@ scoreFrame=Frame(root,bg='black')
 possesion=['none']
 
 
-def open_new_window(w):
+def open_new_window():
     new_window = tk.Toplevel(root)
     new_window.title("New Window")
     testlabel=tk.Label(new_window,text='add play')
@@ -226,9 +226,11 @@ def open_new_window(w):
     #print('in open1',w)
     attemptLabel=Label(new_window,text='attempts a')
     assistedbyLabel=Label(new_window,text='assisted by')
-    def subPlay(q):
-        q[0]=12
-    subBtn=Button(new_window,text='SUBMIT',command=lambda :subPlay(w))
+    def subPlay():
+        global possesion
+        
+        
+    subBtn=Button(new_window,text='SUBMIT',command=subPlay)
 
     playerdrop.grid(row=1,column=0)
     attemptLabel.grid(row=1,column=1)
@@ -243,7 +245,7 @@ def open_new_window(w):
     
 
 
-addplaybtn=tk.Button(scoreFrame,bg='white',fg='green',text=' + ',font=("Arial", 20),command=lambda :open_new_window(possesion))
+addplaybtn=tk.Button(scoreFrame,bg='white',fg='green',text=' + ',font=("Arial", 20),command=open_new_window)
 addplaybtn.grid()
 addplaybtn.place(relx=0.48,rely=0.55)
 
