@@ -283,7 +283,7 @@ statsFrame=Frame(root,bg='white',background='black')
 #statsFrame.config(width=500,height=100)
 #statsFrame.place(relx=0.5,rely=0.9)
 
-statsFrame.pack(padx=10,pady=100)
+statsFrame.pack(padx=10,pady=10)
 
 s=Label(statsFrame,text='TEAM STATS',font=("Helvetica",40),fg='white',bg='black')
 s.grid(row=0,column=1)
@@ -312,39 +312,42 @@ atsp.grid(row=4,column=2,padx=10,pady=10)
 ########################
 teamleaderFrame=Frame(root,bg='white',background='black')
 
-teamleaderFrame.pack(padx=10,pady=100)
-home_label = tk.Label(teamleaderFrame, text="Home", font=("Arial", 16))
-home_label.grid(row=0, column=1)
+teamleaderFrame.pack()
 
-away_label = tk.Label(teamleaderFrame, text="Away", font=("Arial", 16))
-away_label.grid(row=0, column=2)
+teamleaderLabel=Label(teamleaderFrame,text='team leaders',font=("Helvetica", 30),fg='white',bg='black')
+teamleaderLabel.grid(row=0,column=1)
+home_label = tk.Label(teamleaderFrame, text="Home",font=("Helvetica", 30),fg='white',bg='black')
+home_label.grid(row=1, column=1)
 
-home_points_label = tk.Label(teamleaderFrame, text="abc-1", font=("Arial", 14))
-home_points_label.grid(row=1, column=1)
+away_label = tk.Label(teamleaderFrame, text="Away",font=("Helvetica", 30),fg='white',bg='black')
+away_label.grid(row=1, column=2)
 
-home_assists_label = tk.Label(teamleaderFrame, text="bbb-2", font=("Arial", 14))
-home_assists_label.grid(row=2, column=1)
+home_points_label = tk.Label(teamleaderFrame, text="abc-1",font=("Helvetica", 30),fg='white',bg='black')
+home_points_label.grid(row=2, column=1)
 
-home_rebounds_label = tk.Label(teamleaderFrame, text="ccc-3", font=("Arial", 14))
-home_rebounds_label.grid(row=3, column=1)
+home_assists_label = tk.Label(teamleaderFrame, text="bbb-2",font=("Helvetica", 30),fg='white',bg='black')
+home_assists_label.grid(row=3, column=1)
 
-away_points_label = tk.Label(teamleaderFrame, text="ddd-4", font=("Arial", 14))
-away_points_label.grid(row=1, column=2)
+home_rebounds_label = tk.Label(teamleaderFrame, text="ccc-3",font=("Helvetica", 30),fg='white',bg='black')
+home_rebounds_label.grid(row=4, column=1)
 
-away_assists_label = tk.Label(teamleaderFrame, text="eee-30", font=("Arial", 14))
-away_assists_label.grid(row=2, column=2)
+away_points_label = tk.Label(teamleaderFrame, text="ddd-4",font=("Helvetica", 30),fg='white',bg='black')
+away_points_label.grid(row=2, column=2)
 
-away_rebounds_label = tk.Label(teamleaderFrame, text="hhs-20", font=("Arial", 14))
-away_rebounds_label.grid(row=3, column=2)
+away_assists_label = tk.Label(teamleaderFrame, text="eee-30",font=("Helvetica", 30),fg='white',bg='black')
+away_assists_label.grid(row=3, column=2)
 
-points_label = tk.Label(teamleaderFrame, text="Points", font=("Arial", 14))
-points_label.grid(row=1, column=0)
+away_rebounds_label = tk.Label(teamleaderFrame, text="hhs-20",font=("Helvetica", 30),fg='white',bg='black')
+away_rebounds_label.grid(row=4, column=2)
 
-assists_label = tk.Label(teamleaderFrame, text="Assists", font=("Arial", 14))
-assists_label.grid(row=2, column=0)
+points_label = tk.Label(teamleaderFrame, text="Points",font=("Helvetica", 30),fg='white',bg='black')
+points_label.grid(row=2, column=0)
 
-rebounds_label = tk.Label(teamleaderFrame, text="Rebounds", font=("Arial", 14))
-rebounds_label.grid(row=3, column=0)
+assists_label = tk.Label(teamleaderFrame, text="Assists",font=("Helvetica", 30),fg='white',bg='black')
+assists_label.grid(row=3, column=0)
+
+rebounds_label = tk.Label(teamleaderFrame, text="Rebounds",font=("Helvetica", 30),fg='white',bg='black')
+rebounds_label.grid(row=4, column=0)
 ###############
 root.configure(background='black')
 root.attributes('-fullscreen',True)
