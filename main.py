@@ -171,6 +171,10 @@ root.title("Basketball Scorecard")
 
 scoreFrame=Frame(root,bg='black')
 
+addplaybtn=tk.Button(scoreFrame,bg='white',fg='green',text='add',command=lambda x:print('clikc'))
+addplaybtn.grid()
+addplaybtn.place(relx=0.4,rely=0.5)
+
 # Create labels for HOME and AWAY teams
 home_label = tk.Label(scoreFrame, text="HOME", font=("Helvetica", 50),bg='black',fg='Blue')
 away_label = tk.Label(scoreFrame, text="AWAY", font=("Helvetica", 50),bg='black',fg='Blue')
