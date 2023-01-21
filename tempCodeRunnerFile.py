@@ -1,1 +1,1 @@
-    print(play)
+away

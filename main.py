@@ -45,7 +45,10 @@ def teamFGp(team):    #Returns Team FG % as float
     for i in team:
         teamFGA+=team[i]['FGA']
         teamFGM+=team[i]['FGM']
-    return (teamFGM/teamFGA)
+    if team[i]['FGA']==0:
+        return 0
+    else:
+        return (teamFGM/teamFGA)
 
 
 def team3Pp(team):    # Returns Team 3P % as float
@@ -81,7 +84,7 @@ def newplay(p):
     global homepoints
     p[0][p[1]]['FGA']+=1
     if p[3]=='Made':
-        home[p[1]]['points']+=int(p[2])
+        p[0][p[1]]['points']+=int(p[2])
         p[5].set(int(int(p[5].get())+int(p[2])))
         p[0][p[1]]['FGM']+=1
         p[0][p[4]]['assists']+=1
@@ -192,7 +195,7 @@ def open_new_window():
     new_window.geometry("500x200")
   
     # Dropdown menu options
-    playernames = [q for q in home]
+    playernames = [j for j in home]+[r for r in away]
   
     # datatype of menu text
     playerclicked = StringVar()
@@ -214,7 +217,7 @@ def open_new_window():
     resultclicked.set('Result')
     resultdrop=OptionMenu(new_window,resultclicked,*result)
 
-    assisted=[w for w in home]
+    assisted=[w for w in home]+[y for y in away]
     
     assistedclicked=StringVar()
     assistedclicked.set('Assisted by')
@@ -222,26 +225,40 @@ def open_new_window():
     #print('in open1',w)
     attemptLabel=Label(new_window,text='attempts a')
     assistedbyLabel=Label(new_window,text='assisted by')
+
+    Team=['home','away']
+    Teamclicked=StringVar()
+    Teamclicked.set('Team')
+    Teamdrop=OptionMenu(new_window,Teamclicked,*Team)
     def subPlay():
         global homepoints
         print(homepoints)
-        pz=(home,playerclicked.get(),shotypeclicked.get(),resultclicked.get(),assistedclicked.get(),home_score)
+        pz=[playerclicked.get(),shotypeclicked.get(),resultclicked.get(),assistedclicked.get()]
+        if Teamclicked.get()=='home':
+            pz.insert(0,home)
+            pz.append(home_score)
+        else:
+            pz.insert(0,away)
+            pz.append(away_score)
         
         newplay(pz)
         #home_score.set(home_score.get() + 2)
         #home_score_label.config(Text='fdsf')
+        print(home)
+        print(teamFGp(home))
+        new_window.destroy()
         
 
         
         
     subBtn=Button(new_window,text='SUBMIT',command=subPlay)
-    
-    playerdrop.grid(row=1,column=0)
-    attemptLabel.grid(row=1,column=1)
-    shottypedrop.grid(row=1,column=2)
-    resultdrop.grid(row=1,column=3)
-    assistedbyLabel.grid(row=1,column=4)
-    assisteddrop.grid(row=1,column=5)
+    Teamdrop.grid(row=1,column=0)
+    playerdrop.grid(row=1,column=1)
+    attemptLabel.grid(row=1,column=2)
+    shottypedrop.grid(row=1,column=3)
+    resultdrop.grid(row=1,column=4)
+    assistedbyLabel.grid(row=1,column=5)
+    assisteddrop.grid(row=1,column=6)
     subBtn.grid()
 
     
@@ -289,7 +306,14 @@ statsFrame=Frame(root,bg='white',background='black')
 #statsFrame.place(relx=0.5,rely=0.9)
 
 statsFrame.pack(padx=10,pady=10)
+############################
+hfgpVar=tk.IntVar()
+hfgpVar.set((teamFGp(home)))
 
+
+
+
+###########################
 s=Label(statsFrame,text='TEAM STATS',font=("Helvetica",40),fg='white',bg='black')
 s.grid(row=0,column=1)
 homeLabel=Label(statsFrame,text='HOME',font=("Helvetica", 30),fg='white',bg='black')
@@ -297,7 +321,7 @@ awayLabel=Label(statsFrame,text='AWAY',font=("Helvetica", 30),fg='white',bg='bla
 FGLabel=Label(statsFrame,text="FG%",font=("Helvetica", 30),fg='white',bg='black')
 TPLabel=Label(statsFrame,text="3P%",font=("Helvetica", 30),fg='white',bg='black')
 TSLabel=Label(statsFrame,text="TS%",font=("Helvetica", 30),fg='white',bg='black')
-hfgp=Label(statsFrame,text='34'+'%',font=("Helvetica", 30),fg='white',bg='black')
+hfgp=Label(statsFrame,textvariable=hfgpVar,font=("Helvetica", 30),fg='white',bg='black')
 htpp=Label(statsFrame,text='43'+'%',font=("Helvetica", 30),fg='white',bg='black')
 htsp=Label(statsFrame,text='23'+'%',font=("Helvetica", 30),fg='white',bg='black')
 afgp=Label(statsFrame,text='43'+'%',font=("Helvetica", 30),fg='white',bg='black')
