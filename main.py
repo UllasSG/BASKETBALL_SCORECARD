@@ -92,7 +92,7 @@ def newplay(p):
         p[5].set(int(int(p[5].get())+int(p[2])))
         p[0][p[1]]['FGM']+=1
         p[0][p[4]]['assists']+=1
-    if p[2]==3:
+    if p[2]=='3':
         p[0][p[1]]['3PA']+=1
         if p[3]=='Made':
             p[0][p[1]]['3PM']+=1
@@ -238,6 +238,7 @@ def open_new_window():
         global homepoints
         print(homepoints)
         pz=[playerclicked.get(),shotypeclicked.get(),resultclicked.get(),assistedclicked.get()]
+        print(pz)
         if Teamclicked.get()=='home':
             pz.insert(0,home)
             pz.append(home_score)
@@ -252,7 +253,7 @@ def open_new_window():
         print(teamFGp(home))
         hfgpVar.set(str(teamFGp(home))+'%')
         afgpVar.set(str(teamFGp(away))+'%')
-        htppVar.set('%')
+        htppVar.set(str(team3Pp(home))+'%')
         atppVar.set(str(team3Pp(away))+'%')
         new_window.destroy()
         
