@@ -21,7 +21,7 @@ def FGp(team,player):#returns Field goal % as float
     if (team[player]['FGA'])==0:
         return 0
     fgp=((team[player]['FGM'])/(team[player]['FGA']))*100
-    return fgp
+    return round(fgp,2)
 
 def points(team,player):#returns the points scored by the player as a float
     return team[player]['points']
@@ -31,12 +31,12 @@ def assists(team,player):#returns the assists scored by the player as a float
 
 def TSp(team,player): #returns True Shooting % as float
     tsp=((team[player]['points'])/(2*team[player]['FGA']))*100
-    return tsp
+    return round(tsp,2)
 def Thrp(team,player):#returns 3 pointers made % as float
     if (team[player]['3PM'])==0:
         return 0
     tpm=((team[player]['3PM'])/(team[player]['3PA']))*100
-    return tpm
+    return round(tpm,2)
 
 
 def teamFGp(team):    #Returns Team FG % as float
@@ -49,7 +49,7 @@ def teamFGp(team):    #Returns Team FG % as float
     if teamFGA==0:
         return 0
     else:
-        return (teamFGM/(teamFGA))*100
+        return round(((teamFGM/(teamFGA))*100),2)
 
 
 def team3Pp(team):    # Returns Team 3P % as float
@@ -58,7 +58,10 @@ def team3Pp(team):    # Returns Team 3P % as float
     for i in team:
         team3PA+=team[i]['3PA']
         team3PM+=team[i]['3PM']
-    return (team3PM/team3PA)*100
+    if team3PA==0:
+        return 0
+    else:
+        return round(((team3PM/team3PA)*100),2)
 
 def teamTSp(team):          # returns tream TS % as float
     teamPts=0
@@ -66,7 +69,7 @@ def teamTSp(team):          # returns tream TS % as float
     for i in team:
         teamPts+=team[i]['points']
         teamFGA+=team[i]['FGA']
-    return (teamPts/(2*teamFGA))*100
+    return round(((teamPts/(2*teamFGA))*100),2)
 
 
 def TeamLeadPoints(team):
@@ -247,7 +250,10 @@ def open_new_window():
         #home_score_label.config(Text='fdsf')
         print(home)
         print(teamFGp(home))
-        hfgpVar.set((teamFGp(home)))
+        hfgpVar.set(str(teamFGp(home))+'%')
+        afgpVar.set(str(teamFGp(away))+'%')
+        htppVar.set('%')
+        atppVar.set(str(team3Pp(away))+'%')
         new_window.destroy()
         
 
@@ -309,8 +315,14 @@ statsFrame=Frame(root,bg='white',background='black')
 
 statsFrame.pack(padx=10,pady=10)
 ############################
-hfgpVar=tk.IntVar()
-hfgpVar.set((teamFGp(home)))
+hfgpVar=tk.StringVar()
+hfgpVar.set(str(teamFGp(home))+'%')
+afgpVar=tk.IntVar()
+afgpVar.set(str(teamFGp(away))+'%')
+htppVar=tk.IntVar()
+htppVar.set(str(team3Pp(home))+'%')
+atppVar=tk.StringVar()
+atppVar.set(str(team3Pp(away))+'%')
 
 
 
@@ -324,10 +336,10 @@ FGLabel=Label(statsFrame,text="FG%",font=("Helvetica", 30),fg='white',bg='black'
 TPLabel=Label(statsFrame,text="3P%",font=("Helvetica", 30),fg='white',bg='black')
 TSLabel=Label(statsFrame,text="TS%",font=("Helvetica", 30),fg='white',bg='black')
 hfgp=Label(statsFrame,textvariable=hfgpVar,font=("Helvetica", 30),fg='white',bg='black')
-htpp=Label(statsFrame,text='43'+'%',font=("Helvetica", 30),fg='white',bg='black')
+htpp=Label(statsFrame,textvariable=htppVar,font=("Helvetica", 30),fg='white',bg='black')
 htsp=Label(statsFrame,text='23'+'%',font=("Helvetica", 30),fg='white',bg='black')
-afgp=Label(statsFrame,text='43'+'%',font=("Helvetica", 30),fg='white',bg='black')
-atpp=Label(statsFrame,text='32'+'%',font=("Helvetica", 30),fg='white',bg='black')
+afgp=Label(statsFrame,textvariable=afgpVar,font=("Helvetica", 30),fg='white',bg='black')
+atpp=Label(statsFrame,textvariable=atppVar,font=("Helvetica", 30),fg='white',bg='black')
 atsp=Label(statsFrame,text='54'+'%',font=("Helvetica", 30),fg='white',bg='black')
 homeLabel.grid(row=1,column=1,padx=10,pady=10)
 awayLabel.grid(row=1,column=2,padx=10,pady=10)
