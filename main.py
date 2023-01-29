@@ -125,8 +125,8 @@ awayFrame=Frame(window,width=230,bg='black',height=100)
 awayFrame.grid()
 awayFrame.place(relx=0.68,rely=0.6,anchor=W)
 #Pack the widgets in the home frame
-home_label = Label(homeFrame, text="Team 1",font=("arial", 20))
-home_label.grid(row=0, column=0,pady=20)
+#home_label = Label(homeFrame, text="Team 1",font=("arial", 20))
+#home_label.grid(row=0, column=0,pady=20)
 home_player1 = Entry(homeFrame,font=("arial", 20))
 home_player1.grid(row=1, column=0,pady=10)
 home_player2 = Entry(homeFrame,font=("arial", 20))
@@ -138,9 +138,18 @@ home_player4.grid(row=4, column=0,pady=10)
 home_player5 = Entry(homeFrame,font=("arial", 20))
 home_player5.grid(row=5, column=0,pady=10)
 
+'''
+game_to_label= Label(window, text="Game To",font=('Arial Black',30),bg='black',fg='Violet')
+game_to_label.grid()
+game_to_label.place(relx=0.42,rely=0.4)
+game_to_input = Entry(window,font=("arial", 20),justify=CENTER)
+game_to_input.grid()
+game_to_input.place(relx=0.455,rely=0.5,width=100,height=100)
+game_to=game_to_input.get()
+'''
 
-away_label = Label(awayFrame, text="Team 2",font=("arial", 20))
-away_label.grid(row=0, column=1,pady=20)
+#away_label = Label(awayFrame, text="Team 2",font=("arial", 20))
+#away_label.grid(row=0, column=1,pady=20)
 away_player1 = Entry(awayFrame,font=("arial", 20))
 away_player1.grid(row=1, column=1,pady=10)
 away_player2 = Entry(awayFrame,font=("arial", 20))
@@ -265,6 +274,8 @@ def open_new_window():
         atspVar.set(str(teamTSp(away))+'%')
         hplVar.set(TeamLeadPoints(home)+' - '+str(points(home,TeamLeadPoints(home))))
         aplVar.set(TeamLeadPoints(away)+' - '+str(points(away,TeamLeadPoints(away))))
+        halVar.set(TeamLeadAssists(home)+' - '+str(assists(home,TeamLeadAssists(home))))
+        aalVar.set(TeamLeadAssists(away)+' - '+str(assists(away,TeamLeadAssists(away))))
         new_window.destroy()
         
 
@@ -372,7 +383,9 @@ aplVar=tk.StringVar()
 halVar=tk.StringVar()
 aalVar=tk.StringVar()
 hplVar.set(TeamLeadPoints(home)+' - '+str(points(home,TeamLeadPoints(home))))
-aplVar.set(TeamLeadPoints(away)+' - '+str(points(away,TeamLeadPoints(away))))      
+aplVar.set(TeamLeadPoints(away)+' - '+str(points(away,TeamLeadPoints(away))))
+halVar.set(TeamLeadAssists(home)+' - '+str(assists(home,TeamLeadAssists(home))))
+aalVar.set(TeamLeadAssists(away)+' - '+str(assists(away,TeamLeadAssists(away))))
 
 
 ##########################33
@@ -391,7 +404,7 @@ away_label.grid(row=1, column=2,padx=10,pady=8)
 home_points_label = tk.Label(teamleaderFrame, textvariable=hplVar,font=("Helvetica", 30),fg='white',bg='black')
 home_points_label.grid(row=2, column=1,padx=10,pady=8)
 
-home_assists_label = tk.Label(teamleaderFrame, text="bbb-2",font=("Helvetica", 30),fg='white',bg='black')
+home_assists_label = tk.Label(teamleaderFrame, textvariable=halVar,font=("Helvetica", 30),fg='white',bg='black')
 home_assists_label.grid(row=3, column=1,padx=10,pady=8)
 
 
@@ -399,7 +412,7 @@ home_assists_label.grid(row=3, column=1,padx=10,pady=8)
 away_points_label = tk.Label(teamleaderFrame, textvariable=aplVar,font=("Helvetica", 30),fg='white',bg='black')
 away_points_label.grid(row=2, column=2,padx=10,pady=8)
 
-away_assists_label = tk.Label(teamleaderFrame, text="eee-30",font=("Helvetica", 30),fg='white',bg='black')
+away_assists_label = tk.Label(teamleaderFrame, textvariable=aalVar,font=("Helvetica", 30),fg='white',bg='black')
 away_assists_label.grid(row=3, column=2,padx=10,pady=8)
 
 
