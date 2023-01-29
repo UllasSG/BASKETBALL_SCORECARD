@@ -197,7 +197,7 @@ import tkinter as tk
 root = tk.Tk()
 root.title("Basketball Scorecard")
 
-scoreFrame=Frame(root,bg='black')
+scoreFrame=Frame(root,bg='black',pady=37)
 
 possesion=['none']
 
@@ -208,10 +208,10 @@ def open_new_window():
 
 
     new_window = tk.Toplevel(root)
-    new_window.title("New Window")
-    testlabel=tk.Label(new_window,text='add play')
-    testlabel.grid()
-    new_window.geometry("500x200")
+    
+    testlabel=tk.Label(new_window,text='add play',font=('Times New Roman',20))
+    testlabel.grid(row=0,column=3)
+    new_window.geometry("600x200")
   
     # Dropdown menu options
     playernames = [j for j in home]+[r for r in away]
@@ -289,7 +289,7 @@ def open_new_window():
     resultdrop.grid(row=1,column=4)
     assistedbyLabel.grid(row=1,column=5)
     assisteddrop.grid(row=1,column=6)
-    subBtn.grid()
+    subBtn.grid(row=2,column=3)
       ###################################tany########################
     
     new_window.mainloop()
