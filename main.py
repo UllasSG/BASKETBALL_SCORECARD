@@ -69,7 +69,10 @@ def teamTSp(team):          # returns tream TS % as float
     for i in team:
         teamPts+=team[i]['points']
         teamFGA+=team[i]['FGA']
-    return round(((teamPts/(2*teamFGA))*100),2)
+    if teamFGA==0:
+        return 0
+    else :
+        return round(((teamPts/(2*teamFGA))*100),2)
 
 
 def TeamLeadPoints(team):
@@ -191,7 +194,10 @@ possesion=['none']
 
 
 def open_new_window():
-    
+    ###################################tany########################
+
+
+
     new_window = tk.Toplevel(root)
     new_window.title("New Window")
     testlabel=tk.Label(new_window,text='add play')
@@ -255,6 +261,9 @@ def open_new_window():
         afgpVar.set(str(teamFGp(away))+'%')
         htppVar.set(str(team3Pp(home))+'%')
         atppVar.set(str(team3Pp(away))+'%')
+        htspVar.set(str(teamTSp(home))+'%')
+        atspVar.set(str(teamTSp(away))+'%')
+        hplVar.set(TeamLeadPoints(home)+' - '+str(points(home,TeamLeadPoints(home))))
         new_window.destroy()
         
 
@@ -269,7 +278,7 @@ def open_new_window():
     assistedbyLabel.grid(row=1,column=5)
     assisteddrop.grid(row=1,column=6)
     subBtn.grid()
-
+      ###################################tany########################
     
     new_window.mainloop()
     
@@ -324,7 +333,10 @@ htppVar=tk.IntVar()
 htppVar.set(str(team3Pp(home))+'%')
 atppVar=tk.StringVar()
 atppVar.set(str(team3Pp(away))+'%')
-
+htspVar=tk.StringVar()
+htspVar.set(str(teamTSp(home))+'%')
+atspVar=tk.StringVar()
+atspVar.set(str(teamTSp(away))+'%')
 
 
 
@@ -338,10 +350,10 @@ TPLabel=Label(statsFrame,text="3P%",font=("Helvetica", 30),fg='white',bg='black'
 TSLabel=Label(statsFrame,text="TS%",font=("Helvetica", 30),fg='white',bg='black')
 hfgp=Label(statsFrame,textvariable=hfgpVar,font=("Helvetica", 30),fg='white',bg='black')
 htpp=Label(statsFrame,textvariable=htppVar,font=("Helvetica", 30),fg='white',bg='black')
-htsp=Label(statsFrame,text='23'+'%',font=("Helvetica", 30),fg='white',bg='black')
+htsp=Label(statsFrame,textvariable=htspVar,font=("Helvetica", 30),fg='white',bg='black')
 afgp=Label(statsFrame,textvariable=afgpVar,font=("Helvetica", 30),fg='white',bg='black')
 atpp=Label(statsFrame,textvariable=atppVar,font=("Helvetica", 30),fg='white',bg='black')
-atsp=Label(statsFrame,text='54'+'%',font=("Helvetica", 30),fg='white',bg='black')
+atsp=Label(statsFrame,textvariable=atspVar,font=("Helvetica", 30),fg='white',bg='black')
 homeLabel.grid(row=1,column=1,padx=10,pady=10)
 awayLabel.grid(row=1,column=2,padx=10,pady=10)
 FGLabel.grid(row=2,column=0,padx=10,pady=10)
@@ -354,6 +366,15 @@ afgp.grid(row=2,column=2,padx=10,pady=10)
 atpp.grid(row=3,column=2,padx=10,pady=10)
 atsp.grid(row=4,column=2,padx=10,pady=10)
 ########################
+hplVar=tk.StringVar()
+aplVar=tk.StringVar()
+halVar=tk.StringVar()
+aalVar=tk.StringVar()
+hplVar.set(TeamLeadPoints(home)+' - '+str(points(home,TeamLeadPoints(home))))
+           
+
+
+##########################33
 teamleaderFrame=Frame(root,bg='white',background='black')
 
 teamleaderFrame.pack()
@@ -366,14 +387,13 @@ home_label.grid(row=1, column=1,padx=10,pady=8)
 away_label = tk.Label(teamleaderFrame, text="Away",font=("Helvetica", 30),fg='white',bg='black')
 away_label.grid(row=1, column=2,padx=10,pady=8)
 
-home_points_label = tk.Label(teamleaderFrame, text="abc-1",font=("Helvetica", 30),fg='white',bg='black')
+home_points_label = tk.Label(teamleaderFrame, textvariable=hplVar,font=("Helvetica", 30),fg='white',bg='black')
 home_points_label.grid(row=2, column=1,padx=10,pady=8)
 
 home_assists_label = tk.Label(teamleaderFrame, text="bbb-2",font=("Helvetica", 30),fg='white',bg='black')
 home_assists_label.grid(row=3, column=1,padx=10,pady=8)
 
-home_rebounds_label = tk.Label(teamleaderFrame, text="ccc-3",font=("Helvetica", 30),fg='white',bg='black')
-home_rebounds_label.grid(row=4, column=1,padx=10,pady=8)
+
 
 away_points_label = tk.Label(teamleaderFrame, text="ddd-4",font=("Helvetica", 30),fg='white',bg='black')
 away_points_label.grid(row=2, column=2,padx=10,pady=8)
@@ -381,8 +401,6 @@ away_points_label.grid(row=2, column=2,padx=10,pady=8)
 away_assists_label = tk.Label(teamleaderFrame, text="eee-30",font=("Helvetica", 30),fg='white',bg='black')
 away_assists_label.grid(row=3, column=2,padx=10,pady=8)
 
-away_rebounds_label = tk.Label(teamleaderFrame, text="hhs-20",font=("Helvetica", 30),fg='white',bg='black')
-away_rebounds_label.grid(row=4, column=2,padx=10,pady=8)
 
 points_label = tk.Label(teamleaderFrame, text="Points",font=("Helvetica", 30),fg='white',bg='black')
 points_label.grid(row=2, column=0,padx=10,pady=10)
@@ -390,8 +408,7 @@ points_label.grid(row=2, column=0,padx=10,pady=10)
 assists_label = tk.Label(teamleaderFrame, text="Assists",font=("Helvetica", 30),fg='white',bg='black')
 assists_label.grid(row=3, column=0,padx=10,pady=10)
 
-rebounds_label = tk.Label(teamleaderFrame, text="Rebounds",font=("Helvetica", 30),fg='white',bg='black')
-rebounds_label.grid(row=4, column=0,padx=10,pady=10)
+
 ###############
 root.configure(background='black')
 root.attributes('-fullscreen',True)
