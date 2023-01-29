@@ -264,6 +264,7 @@ def open_new_window():
         htspVar.set(str(teamTSp(home))+'%')
         atspVar.set(str(teamTSp(away))+'%')
         hplVar.set(TeamLeadPoints(home)+' - '+str(points(home,TeamLeadPoints(home))))
+        aplVar.set(TeamLeadPoints(away)+' - '+str(points(home,TeamLeadPoints(away))))    
         new_window.destroy()
         
 
@@ -371,7 +372,7 @@ aplVar=tk.StringVar()
 halVar=tk.StringVar()
 aalVar=tk.StringVar()
 hplVar.set(TeamLeadPoints(home)+' - '+str(points(home,TeamLeadPoints(home))))
-           
+aplVar.set(TeamLeadPoints(away)+' - '+str(points(home,TeamLeadPoints(away))))        
 
 
 ##########################33
