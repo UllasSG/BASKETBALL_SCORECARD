@@ -264,7 +264,7 @@ def open_new_window():
         htspVar.set(str(teamTSp(home))+'%')
         atspVar.set(str(teamTSp(away))+'%')
         hplVar.set(TeamLeadPoints(home)+' - '+str(points(home,TeamLeadPoints(home))))
-        aplVar.set(TeamLeadPoints(away)+' - '+str(points(home,TeamLeadPoints(away))))    
+        aplVar.set(TeamLeadPoints(away)+' - '+str(points(away,TeamLeadPoints(away))))
         new_window.destroy()
         
 
@@ -372,7 +372,7 @@ aplVar=tk.StringVar()
 halVar=tk.StringVar()
 aalVar=tk.StringVar()
 hplVar.set(TeamLeadPoints(home)+' - '+str(points(home,TeamLeadPoints(home))))
-aplVar.set(TeamLeadPoints(away)+' - '+str(points(home,TeamLeadPoints(away))))        
+aplVar.set(TeamLeadPoints(away)+' - '+str(points(away,TeamLeadPoints(away))))      
 
 
 ##########################33
@@ -396,7 +396,7 @@ home_assists_label.grid(row=3, column=1,padx=10,pady=8)
 
 
 
-away_points_label = tk.Label(teamleaderFrame, text="ddd-4",font=("Helvetica", 30),fg='white',bg='black')
+away_points_label = tk.Label(teamleaderFrame, textvariable=aplVar,font=("Helvetica", 30),fg='white',bg='black')
 away_points_label.grid(row=2, column=2,padx=10,pady=8)
 
 away_assists_label = tk.Label(teamleaderFrame, text="eee-30",font=("Helvetica", 30),fg='white',bg='black')
