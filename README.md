@@ -1,5 +1,5 @@
 # BASKETBALL_SCORECARD
  
-# ULLAS S GIRISH PES1202201146
-# tanmay dhelaria PES1202202256
-# vihaan holalgundi PES1202201234
+# Ullas S Girish PES1UG22CS663
+# Tanmay Dhelaria PES1UG22CS644
+# Vihaan Holalgundi PES1UG22CS692
